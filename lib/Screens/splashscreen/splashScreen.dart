@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 
-import 'package:blology_learner/Screens/HomeScreen.dart';
+import 'package:blology_learner/Screens/Home/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 

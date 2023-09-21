@@ -2,7 +2,7 @@
 import 'package:blology_learner/component/blogItem.dart';
 import 'package:flutter/material.dart';
 
-import 'tapic.dart';
+
 
 class Blog extends StatefulWidget {
   const Blog({super.key});
@@ -24,7 +24,7 @@ class _BlogState extends State<Blog> {
               InkWell(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const Item()));
+                      MaterialPageRoute(builder: (context) => const BlogItem()));
                 },
                 child: const BlogItem(),
               ),
@@ -32,7 +32,7 @@ class _BlogState extends State<Blog> {
               InkWell(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const Item()));
+                      MaterialPageRoute(builder: (context) => const BlogItem()));
                 },
                 child: const BlogItem(),
               ),
@@ -40,7 +40,7 @@ class _BlogState extends State<Blog> {
               InkWell(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const Item()));
+                      MaterialPageRoute(builder: (context) => const BlogItem()));
                 },
                 child: const BlogItem(),
               ),

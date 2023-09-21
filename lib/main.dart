@@ -1,4 +1,4 @@
-import 'package:blology_learner/Screens/splashScreen.dart';
+import 'package:blology_learner/Screens/splashscreen/splashScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,6 +18,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home:const SplashScreen(),
+      //Blog(),
+      
     );
   }
 }

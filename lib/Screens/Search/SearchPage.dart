@@ -1,0 +1,32 @@
+import 'package:blology_learner/component/widgets/myDrawer.dart';
+import 'package:blology_learner/component/widgets/myNavigation.dart';
+import 'package:flutter/material.dart';
+
+class SearchPage extends StatefulWidget {
+  const SearchPage({super.key});
+
+  @override
+  State<SearchPage> createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+       appBar: AppBar(
+        title: const Center(
+          child: Text(
+            "Search",
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ),
+      drawer: const MyDrawer(),
+      bottomNavigationBar: const MyBottemNave(),
+      body: const SizedBox(child: Center(child: Text("Search"))),
+    );
+  }
+}

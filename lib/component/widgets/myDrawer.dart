@@ -1,7 +1,9 @@
 // ignore_for_file: file_names
 
+import 'package:blology_learner/Screens/Likes/LikesPage.dart';
+import 'package:blology_learner/Screens/catagory/CatagoryPage.dart';
+import 'package:blology_learner/Screens/home/HomeScreen.dart';
 import 'package:flutter/material.dart';
-
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -52,7 +54,8 @@ class MyDrawer extends StatelessWidget {
             color: Colors.purple,
           ),
           onTap: () {
-            Navigator.pop(context);
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const HomeScreen()));
           },
         ),
         ListTile(
@@ -62,7 +65,8 @@ class MyDrawer extends StatelessWidget {
             color: Colors.pink,
           ),
           onTap: () {
-            Navigator.pop(context);
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const LikesPage()));
           },
         ),
         ListTile(
@@ -72,7 +76,8 @@ class MyDrawer extends StatelessWidget {
             color: Colors.teal,
           ),
           onTap: () {
-            Navigator.pop(context);
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const CatagoryPage()));
           },
         ),
         ListTile(
@@ -108,8 +113,8 @@ class MyDrawer extends StatelessWidget {
       ],
     );
     return Drawer(
-        shadowColor: icColor,
-        child: drawerItems,
-      );
+      shadowColor: icColor,
+      child: drawerItems,
+    );
   }
 }
