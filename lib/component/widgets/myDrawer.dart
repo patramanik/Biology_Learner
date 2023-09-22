@@ -1,6 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:blology_learner/Screens/Likes/LikesPage.dart';
+import 'package:blology_learner/Screens/Policy/PolicyPage.dart';
+import 'package:blology_learner/Screens/about%20Us/AboutUs.dart';
 import 'package:blology_learner/Screens/catagory/CatagoryPage.dart';
 import 'package:blology_learner/Screens/home/HomeScreen.dart';
 import 'package:flutter/material.dart';
@@ -54,19 +56,9 @@ class MyDrawer extends StatelessWidget {
             color: Colors.purple,
           ),
           onTap: () {
+            Navigator.of(context).pop();
             Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (context) => const HomeScreen()));
-          },
-        ),
-        ListTile(
-          title: const Text("Likes"),
-          leading: const Icon(
-            Icons.favorite,
-            color: Colors.pink,
-          ),
-          onTap: () {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const LikesPage()));
           },
         ),
         ListTile(
@@ -76,8 +68,21 @@ class MyDrawer extends StatelessWidget {
             color: Colors.teal,
           ),
           onTap: () {
+            Navigator.of(context).pop();
             Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (context) => const CatagoryPage()));
+          },
+        ),
+        ListTile(
+          title: const Text("Likes"),
+          leading: const Icon(
+            Icons.favorite,
+            color: Colors.pink,
+          ),
+          onTap: () {
+            Navigator.of(context).pop();
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const LikesPage()));
           },
         ),
         ListTile(
@@ -91,26 +96,32 @@ class MyDrawer extends StatelessWidget {
           },
         ),
         ListTile(
-          title: const Text("Share"),
+          title: const Text("Privacy Policy"),
           leading: const Icon(
             Icons.lock,
             color: Colors.blueGrey,
           ),
           onTap: () {
-            Navigator.pop(context);
+            Navigator.of(context).pop();
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const PolicyPage()));
           },
         ),
         ListTile(
-          title: const Text("Share"),
+          title: const Text("About Us"),
           leading: const Icon(
-            Icons.share,
+            Icons.info,
             color: Colors.orangeAccent,
           ),
           onTap: () {
-            Navigator.pop(context);
+            Navigator.of(context).pop();
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const AboutUsPage()));
           },
         ),
+        
       ],
+    
     );
     return Drawer(
       shadowColor: icColor,

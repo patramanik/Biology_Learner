@@ -1,23 +1,22 @@
-// ignore: file_names
-import '../../component/widgets/myDrawer.dart';
+import 'package:blology_learner/component/widgets/myDrawer.dart';
 import 'package:blology_learner/component/widgets/myNavigation.dart';
 import 'package:flutter/material.dart';
 
-class LikesPage extends StatefulWidget {
-  const LikesPage({super.key});
+class PolicyPage extends StatefulWidget {
+  const PolicyPage({super.key});
 
   @override
-  State<LikesPage> createState() => _LikesPageState();
+  State<PolicyPage> createState() => _PolicyPageState();
 }
 
-class _LikesPageState extends State<LikesPage> {
+class _PolicyPageState extends State<PolicyPage> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-       appBar: AppBar(
+    return Scaffold(
+     appBar: AppBar(
         title: const Center(
           child: Text(
-            "Likes",
+            "Privacy Policy",
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w500,
@@ -27,7 +26,7 @@ class _LikesPageState extends State<LikesPage> {
       ),
       drawer: const MyDrawer(),
       bottomNavigationBar: const MyBottemNave(),
-      body: const SizedBox(child: Center(child: Text("Likes"))),
+      body: const SizedBox(child: Center(child: Text("Privacy Policy"))),
     );
   }
 }

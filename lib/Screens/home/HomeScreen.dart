@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
             "Home",
             style: TextStyle(
               color: Colors.black,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ),

@@ -19,7 +19,7 @@ class _CatagoryPageState extends State<CatagoryPage> {
             "Catagory",
             style: TextStyle(
               color: Colors.black,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ),
