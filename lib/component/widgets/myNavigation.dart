@@ -8,8 +8,11 @@ import 'package:blology_learner/Screens/home/HomeScreen.dart';
 import 'package:blology_learner/component/widgets/myDrawer.dart';
 // ignore: must_be_immutable
 class MyBottemNave extends StatefulWidget {
-  MyBottemNave({super.key, required this.selectedIndex});
-  int selectedIndex = 0;
+   MyBottemNave({
+    super.key, 
+    this.selectedIndex = 0,
+    });
+  int? selectedIndex;
 
   @override
   State<MyBottemNave> createState() => _MyBottemNaveState();
@@ -21,13 +24,13 @@ class _MyBottemNaveState extends State<MyBottemNave> {
   void onItemTapped(int index) {
     setState(() {
       widget.selectedIndex = index;
-      _currentTabIndex = widget.selectedIndex;
+      _currentTabIndex = widget.selectedIndex!;
     });
   }
 
   @override
   void initState() {
-    onItemTapped(widget.selectedIndex);
+    onItemTapped(widget.selectedIndex!);
     super.initState();
   }
 

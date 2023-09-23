@@ -1,5 +1,6 @@
 // ignore: file_names
 import 'package:blology_learner/component/widgets/myDrawer.dart';
+import 'package:blology_learner/component/widgets/myNavigation.dart';
 import 'package:flutter/material.dart';
 
 class AboutUsPage extends StatelessWidget {
@@ -20,7 +21,7 @@ class AboutUsPage extends StatelessWidget {
         ),
       ),
       drawer: const MyDrawer(),
-      // bottomNavigationBar:  MyBottemNave(selectedIndex: ,),
+      // bottomNavigationBar:  MyBottemNave(),
       body: const SizedBox(child: Center(child: Text("About Us"))),
     );
   }
