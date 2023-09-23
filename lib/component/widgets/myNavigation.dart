@@ -1,84 +1,151 @@
+
+import 'package:flutter/material.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:blology_learner/Screens/Likes/LikesPage.dart';
 import 'package:blology_learner/Screens/Search/SearchPage.dart';
 import 'package:blology_learner/Screens/catagory/CatagoryPage.dart';
 import 'package:blology_learner/Screens/home/HomeScreen.dart';
-import 'package:flutter/material.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-
+import 'package:blology_learner/component/widgets/myDrawer.dart';
+// ignore: must_be_immutable
 class MyBottemNave extends StatefulWidget {
-  const MyBottemNave({super.key});
+  MyBottemNave({super.key, required this.selectedIndex});
+  int selectedIndex = 0;
 
   @override
   State<MyBottemNave> createState() => _MyBottemNaveState();
 }
 
 class _MyBottemNaveState extends State<MyBottemNave> {
-  final _pagesData = [HomeScreen,LikesPage,SearchPage,CatagoryPage];
-  int _currentIndex = 0;
+  int _currentTabIndex = 0;
+
+  void onItemTapped(int index) {
+    setState(() {
+      widget.selectedIndex = index;
+      _currentTabIndex = widget.selectedIndex;
+    });
+  }
+
+  @override
+  void initState() {
+    onItemTapped(widget.selectedIndex);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    // final naveitem = ListView(
-    //   children: [
-    //     SalomonBottomBar(
-    //       backgroundColor: const Color.fromARGB(255, 254, 255, 255),
-    //       currentIndex: _currentIndex,
-    //       onTap: (i) => setState(() => _currentIndex = i),
-    //       items: [
-    //         SalomonBottomBarItem(
-    //           icon: const Icon(Icons.home),
-    //           title: const Text("Home"),
-    //           selectedColor: Colors.purple,
-    //         ),
+    final kTabPages = <Widget>[
+      const HomeScreen(),
+      const LikesPage(),
+      const SearchPage(),
+      const CatagoryPage(),
+    ];
 
-    //         SalomonBottomBarItem(
-    //           icon: const Icon(Icons.favorite_border),
-    //           title: const Text("Likes"),
-    //           selectedColor: Colors.pink,
-    //         ),
-    //         SalomonBottomBarItem(
-    //           icon: const Icon(Icons.search),
-    //           title: const Text("Search"),
-    //           selectedColor: Colors.orange,
-    //         ),
+    // ignore: unused_local_variable
+    Widget currentScreen = _currentTabIndex == 0 ? const HomeScreen() : _currentTabIndex == 1 ? const LikesPage() :_currentTabIndex == 2 ?const SearchPage():const CatagoryPage();
+    
+    final kBottmonNavBarItems = <SalomonBottomBarItem>[
+      SalomonBottomBarItem(
+        icon: const Icon(Icons.home),
+        title: const Text("Home"),
+        selectedColor: Colors.purple,
+      ),
+      SalomonBottomBarItem(
+        icon: const Icon(Icons.favorite_border),
+        title: const Text("Likes"),
+        selectedColor: Colors.pink,
+      ),
+      SalomonBottomBarItem(
+        icon: const Icon(Icons.search),
+        title: const Text("Search"),
+        selectedColor: Colors.orange,
+      ),
+      SalomonBottomBarItem(
+        icon: const Icon(Icons.category_outlined),
+        title: const Text("Category"),
+        selectedColor: Colors.teal,
+      ),
+    ];
+    assert(kTabPages.length == kBottmonNavBarItems.length);
+    final bottomNavBar = SalomonBottomBar(
+      items: kBottmonNavBarItems,
+      currentIndex: _currentTabIndex,
+      onTap: (int index) {
+        setState(() {
+          _currentTabIndex = index;
+        });
+      },
+    );
+    return Scaffold(
+      body: kTabPages[_currentTabIndex],
+      bottomNavigationBar: bottomNavBar,
+    );
+  }
+}
 
-    //         /// Profile
-    //         SalomonBottomBarItem(
-    //           icon: const Icon(Icons.category_outlined),
-    //           title: const Text("Category"),
-    //           selectedColor: Colors.teal,
-    //         ),
-    //       ]),
-    //   ],
-    // );
+class Home extends StatelessWidget {
+  const Home({super.key});
 
-    return SalomonBottomBar(
-          backgroundColor: const Color.fromARGB(255, 254, 255, 255),
-          currentIndex: _currentIndex,
-          onTap: (i) => setState(() => _currentIndex = i),
-          items: [
-            SalomonBottomBarItem(
-              icon: const Icon(Icons.home),
-              title: const Text("Home"),
-              selectedColor: Colors.purple,
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(
+          child: Text(
+            "Home",
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
             ),
+          ),
+        ),
+      ),
+      drawer: const MyDrawer(),
+      body: const Center(child: Text("Home")),
+    );
+  }
+}
 
-            SalomonBottomBarItem(
-              icon: const Icon(Icons.favorite_border),
-              title: const Text("Likes"),
-              selectedColor: Colors.pink,
-            ),
-            SalomonBottomBarItem(
-              icon: const Icon(Icons.search),
-              title: const Text("Search"),
-              selectedColor: Colors.orange,
-            ),
+class Like extends StatelessWidget {
+  const Like({super.key});
 
-            /// Profile
-            SalomonBottomBarItem(
-              icon: const Icon(Icons.category_outlined),
-              title: const Text("Category"),
-              selectedColor: Colors.teal,
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(
+          child: Text(
+            "Home",
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
             ),
-          ]);
+          ),
+        ),
+      ),
+      drawer: const MyDrawer(),
+      body: const Text("Like"),
+    );
+  }
+}
+
+class Search extends StatelessWidget {
+  const Search({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Text("Scarch"),
+    );
+  }
+}
+
+class Catagory extends StatelessWidget {
+  const Catagory({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Text("Catagory"),
+    );
   }
 }

@@ -1,5 +1,5 @@
+// ignore: file_names
 import 'package:blology_learner/component/widgets/myDrawer.dart';
-import 'package:blology_learner/component/widgets/myNavigation.dart';
 import 'package:flutter/material.dart';
 
 class PolicyPage extends StatefulWidget {
@@ -25,7 +25,7 @@ class _PolicyPageState extends State<PolicyPage> {
         ),
       ),
       drawer: const MyDrawer(),
-      bottomNavigationBar: const MyBottemNave(),
+      // bottomNavigationBar: const MyBottemNave(),
       body: const SizedBox(child: Center(child: Text("Privacy Policy"))),
     );
   }

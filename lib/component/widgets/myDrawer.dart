@@ -1,10 +1,8 @@
 // ignore_for_file: file_names
 
-import 'package:blology_learner/Screens/Likes/LikesPage.dart';
 import 'package:blology_learner/Screens/Policy/PolicyPage.dart';
 import 'package:blology_learner/Screens/about%20Us/AboutUs.dart';
-import 'package:blology_learner/Screens/catagory/CatagoryPage.dart';
-import 'package:blology_learner/Screens/home/HomeScreen.dart';
+import 'package:blology_learner/component/widgets/myNavigation.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -58,7 +56,7 @@ class MyDrawer extends StatelessWidget {
           onTap: () {
             Navigator.of(context).pop();
             Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()));
+                MaterialPageRoute(builder: (context) =>  MyBottemNave(selectedIndex: 0,)));
           },
         ),
         ListTile(
@@ -70,7 +68,7 @@ class MyDrawer extends StatelessWidget {
           onTap: () {
             Navigator.of(context).pop();
             Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const CatagoryPage()));
+                MaterialPageRoute(builder: (context) =>  MyBottemNave(selectedIndex: 3,)));
           },
         ),
         ListTile(
@@ -82,7 +80,7 @@ class MyDrawer extends StatelessWidget {
           onTap: () {
             Navigator.of(context).pop();
             Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const LikesPage()));
+                MaterialPageRoute(builder: (context) =>  MyBottemNave(selectedIndex: 1,)));
           },
         ),
         ListTile(

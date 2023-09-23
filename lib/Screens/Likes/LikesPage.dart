@@ -1,6 +1,5 @@
 // ignore: file_names
 import '../../component/widgets/myDrawer.dart';
-import 'package:blology_learner/component/widgets/myNavigation.dart';
 import 'package:flutter/material.dart';
 
 class LikesPage extends StatefulWidget {
@@ -26,7 +25,7 @@ class _LikesPageState extends State<LikesPage> {
         ),
       ),
       drawer: const MyDrawer(),
-      bottomNavigationBar: const MyBottemNave(),
+      // bottomNavigationBar: const MyBottemNave(),
       body: const SizedBox(child: Center(child: Text("Likes"))),
     );
   }

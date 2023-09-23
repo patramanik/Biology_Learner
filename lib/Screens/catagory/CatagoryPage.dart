@@ -1,5 +1,4 @@
 import 'package:blology_learner/component/widgets/myDrawer.dart';
-import 'package:blology_learner/component/widgets/myNavigation.dart';
 import 'package:flutter/material.dart';
 
 class CatagoryPage extends StatefulWidget {
@@ -25,7 +24,7 @@ class _CatagoryPageState extends State<CatagoryPage> {
         ),
       ),
       drawer: const MyDrawer(),
-      bottomNavigationBar: const MyBottemNave(),
+      // bottomNavigationBar: const MyBottemNave(),
       body: const SizedBox(child: Center(child: Text("Catagory"))),
     );
   }

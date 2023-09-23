@@ -1,6 +1,5 @@
 // ignore_for_file: file_names
 
-import 'package:blology_learner/component/widgets/myNavigation.dart';
 import 'package:flutter/material.dart';
 import '../../component/widgets/myDrawer.dart';
 
@@ -28,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       drawer: const MyDrawer(),
-      bottomNavigationBar: const MyBottemNave(),
+      // bottomNavigationBar: const MyBottemNave(),
       body: const SizedBox(child: Center(child: Text("Home"))),
     );
   }
