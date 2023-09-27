@@ -13,7 +13,7 @@ class _BlogCetagoryItemState extends State<BlogCetagoryItem> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+      padding: const EdgeInsets.all(10.0),
       child: Card(
         shadowColor: Colors.teal,
         elevation: 5.0,

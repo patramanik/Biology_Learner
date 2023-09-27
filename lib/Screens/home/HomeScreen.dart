@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:blology_learner/component/BlogCetagoryItem.dart';
 import 'package:flutter/material.dart';
 import '../../component/widgets/myDrawer.dart';
 
@@ -41,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 scrollDirection: Axis.horizontal,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(15.0),
                     child: Card(
                       shadowColor: Colors.teal,
                       elevation: 5.0,
@@ -138,11 +139,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            Container(
-              color: Colors.blueAccent,
-              width: width,
-              height: height / 2 - 10,
-            )
+            // Container(
+            //   color: Colors.blueAccent,
+            //   width: width,
+            //   height: height,
+            //   child: ListView(
+            //     scrollDirection: Axis.vertical,
+            //     children: const [BlogCetagoryItem()],
+            //   ),
+            // )
+            const BlogCetagoryItem(),
+            const BlogCetagoryItem(),
+            const BlogCetagoryItem(),
+            const BlogCetagoryItem(),
+            const BlogCetagoryItem(),
+            const BlogCetagoryItem(),
           ],
         ),
       )),
