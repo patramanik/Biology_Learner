@@ -12,45 +12,72 @@ class BlogItem extends StatefulWidget {
 class _BlogItemState extends State<BlogItem> {
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shadowColor: Colors.teal,
-      elevation: 5.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: Column(
-        children: [
-          SizedBox(
-            child: ClipRRect(
-              //borderRadius: BorderRadius.circular(10.0),
-              borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(10.0),
-                  topLeft: Radius.circular(10.0)),
-              child: Image.asset(
-                'assets/images/img1.jpg',
-                fit: BoxFit.cover,
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    return Stack(
+      children: [
+        Container(
+          width: width - 40,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              color: Colors.white,
+              boxShadow: const [
+                BoxShadow(
+                  blurRadius: 8.0,
+                  offset: Offset(8, 8),
+                  color: Colors.teal,
+                ),
+              ]),
+          child: Column(
+            children: [
+              Center(
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(10.0),
+                    topRight: Radius.circular(10.0),
+                  ),
+                  child: Image.asset(
+                    'assets/images/img1.jpg',
+                    fit: BoxFit.fill,
+                    height: height / 2 - 220,
+                    width: width - 40,
+                  ),
+                ),
+              ),
+              const Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      top: 15, bottom: 15, right: 10.0, left: 10.0),
+                  child: Text(
+                    "Single cell Protein (SCP) gtvtt gvt",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.w500,
+                      color: Color.fromARGB(255, 23, 23, 23),
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            decoration:  BoxDecoration(color: const Color.fromARGB(163, 0, 150, 135),borderRadius: BorderRadius.circular(20)),
+            child: const Padding(
+              padding: EdgeInsets.all(4.0),
+              child: Text(
+                "Category",
+                style: TextStyle(color: Colors.white, fontSize: 15),
               ),
             ),
           ),
-          const SizedBox(
-            
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    "Single cell Protein (SCP)",
-                    style: TextStyle(
-                      fontSize: 23.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
+        )
+      ],
     );
   }
 }

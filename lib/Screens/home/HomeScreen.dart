@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:blology_learner/component/BlogCetagoryItem.dart';
+import 'package:blology_learner/component/blogItem.dart';
 import 'package:flutter/material.dart';
 import '../../component/widgets/myDrawer.dart';
 
@@ -35,55 +36,22 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             SizedBox(
-              // color: Colors.amberAccent,
               width: width,
               height: height / 2 - 100,
               child: ListView(
                 scrollDirection: Axis.horizontal,
-                children: [
+                children: const [
                   Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Card(
-                      shadowColor: Colors.teal,
-                      elevation: 5.0,
-                      child: Stack(
-                        // alignment: AlignmentDirectional.topEnd,
-                        children: [
-                          Center(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10.0),
-                              child: Image.asset(
-                                'assets/images/img1.jpg',
-                                height: 260,
-                                width: width - 23,
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 20,
-                            right: 10,
-                            left: 10,
-                              child: Container(
-                                height: 60,
-                                width: width - 60,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(50.0),
-                                  border: Border.all(color: Colors.grey)
-                                ),
-                                child: const Center(
-                                  child: Text(
-                                    'This is botany post',
-                                    style: TextStyle(color: Colors.black,fontSize: 22),
-                                  ),
-                                ),
-                              ),
-                            
-                          )
-                        ],
-                      ),
-                    ),
+                    padding: EdgeInsets.all(20.0),
+                    child: BlogItem()
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: BlogItem()
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: BlogItem()
                   ),
                 ],
               ),

@@ -44,7 +44,7 @@ class _MyBottemNaveState extends State<MyBottemNave> {
     ];
 
     // ignore: unused_local_variable
-    Widget currentScreen = _currentTabIndex == 0 ? const HomeScreen() : _currentTabIndex == 1 ? const LikesPage() :_currentTabIndex == 2 ?const SearchPage():const CatagoryPage();
+    // Widget currentScreen = _currentTabIndex == 0 ? const HomeScreen() : _currentTabIndex == 1 ? const LikesPage() :_currentTabIndex == 2 ?const SearchPage():const CatagoryPage();
     
     final kBottmonNavBarItems = <SalomonBottomBarItem>[
       SalomonBottomBarItem(
@@ -85,70 +85,3 @@ class _MyBottemNaveState extends State<MyBottemNave> {
   }
 }
 
-class Home extends StatelessWidget {
-  const Home({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Center(
-          child: Text(
-            "Home",
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
-      ),
-      drawer: const MyDrawer(),
-      body: const Center(child: Text("Home")),
-    );
-  }
-}
-
-class Like extends StatelessWidget {
-  const Like({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Center(
-          child: Text(
-            "Home",
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
-      ),
-      drawer: const MyDrawer(),
-      body: const Text("Like"),
-    );
-  }
-}
-
-class Search extends StatelessWidget {
-  const Search({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Text("Scarch"),
-    );
-  }
-}
-
-class Catagory extends StatelessWidget {
-  const Catagory({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Text("Catagory"),
-    );
-  }
-}
