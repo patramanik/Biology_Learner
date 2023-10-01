@@ -19,15 +19,16 @@ class _BlogItemState extends State<BlogItem> {
         Container(
           width: width - 40,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              color: Colors.white,
-              boxShadow: const [
-                BoxShadow(
-                  blurRadius: 8.0,
-                  offset: Offset(8, 8),
-                  color: Colors.teal,
-                ),
-              ]),
+            borderRadius: BorderRadius.circular(10.0),
+            color: Colors.white,
+            boxShadow: const [
+              BoxShadow(
+                blurRadius: 8.0,
+                offset: Offset(8, 8),
+                color: Colors.teal,
+              ),
+            ],
+          ),
           child: Column(
             children: [
               Center(
@@ -67,7 +68,9 @@ class _BlogItemState extends State<BlogItem> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
-            decoration:  BoxDecoration(color: const Color.fromARGB(163, 0, 150, 135),borderRadius: BorderRadius.circular(20)),
+            decoration: BoxDecoration(
+                color: const Color.fromARGB(163, 0, 150, 135),
+                borderRadius: BorderRadius.circular(20)),
             child: const Padding(
               padding: EdgeInsets.all(4.0),
               child: Text(

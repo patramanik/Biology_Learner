@@ -44,20 +44,23 @@ class _BlogCetagoryItemState extends State<BlogCetagoryItem> {
                     padding: EdgeInsets.only(
                         top: 2, bottom: 2, left: 8.0, right: 8.0),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          child: Text(
-                            "Single cell Protein (SCP)",
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.w500,
-                              color: Color.fromARGB(255, 23, 23, 23),
+                        Padding(
+                          padding: EdgeInsets.only(top: 8.0,left: 3.0,right: 5.0,bottom: 5.0),
+                          child: SizedBox(
+                            child: Text(
+                              "Single cell Protein (SCP)",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                fontSize: 22.0,
+                                fontWeight: FontWeight.w500,
+                                color: Color.fromARGB(255, 23, 23, 23),
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         SizedBox(
