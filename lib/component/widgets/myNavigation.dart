@@ -5,7 +5,6 @@ import 'package:blology_learner/Screens/Likes/LikesPage.dart';
 import 'package:blology_learner/Screens/Search/SearchPage.dart';
 import 'package:blology_learner/Screens/catagory/CatagoryPage.dart';
 import 'package:blology_learner/Screens/home/HomeScreen.dart';
-import 'package:blology_learner/component/widgets/myDrawer.dart';
 // ignore: must_be_immutable
 class MyBottemNave extends StatefulWidget {
    MyBottemNave({
