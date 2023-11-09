@@ -1,4 +1,4 @@
-/// catagorys : [{"id":1,"name":"python","mata_title":"it is a python tutoriyal","image":"1694929338.png","c_keywords":"Haeckel,General Biology"}]
+// / catagorys : [{"id":1,"name":"python","mata_title":"it is a python tutoriyal","image":"1694929338.png","c_keywords":"Haeckel,General Biology"}]
 
 class CatagoryModel {
   CatagoryModel({
