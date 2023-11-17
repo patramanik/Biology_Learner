@@ -2,6 +2,7 @@
 
 import 'package:blology_learner/component/BlogCetagoryItem.dart';
 import 'package:blology_learner/component/blogItem.dart';
+import 'package:blology_learner/component/catagoyitem.dart';
 import 'package:flutter/material.dart';
 import '../../component/widgets/myDrawer.dart';
 
