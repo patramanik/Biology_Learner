@@ -79,7 +79,7 @@ class _BlogItemState extends State<BlogItem> {
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }

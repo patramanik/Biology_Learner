@@ -48,7 +48,8 @@ class _BlogCetagoryItemState extends State<BlogCetagoryItem> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(top: 8.0,left: 3.0,right: 5.0,bottom: 5.0),
+                          padding: EdgeInsets.only(
+                              top: 8.0, left: 3.0, right: 5.0, bottom: 5.0),
                           child: SizedBox(
                             child: Text(
                               "Single cell Protein (SCP)",
@@ -88,13 +89,14 @@ class _BlogCetagoryItemState extends State<BlogCetagoryItem> {
             const Positioned(
               right: 10,
               top: 7,
-                child: SizedBox(
-              child: Icon(
-                Icons.favorite,
-                color: Colors.pinkAccent,
-                size: 35,
+              child: SizedBox(
+                child: Icon(
+                  Icons.favorite,
+                  color: Colors.pinkAccent,
+                  size: 35,
+                ),
               ),
-            ))
+            ),
           ],
         ),
       ),

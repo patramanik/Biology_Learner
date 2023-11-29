@@ -64,6 +64,7 @@ class _CatagoryPageState extends State<CatagoryPage> {
                     final name = catagorys.name;
                     final mataTitel = catagorys.matatitle;
                     final image = catagorys.image;
+                    final catagoryId = catagorys.id;
                     return InkWell(
                       onTap: () {
                         Navigator.push(

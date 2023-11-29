@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, unnecessary_null_comparison
+// ignore_for_file: file_names, unnecessary_null_comparison, non_constant_identifier_names
 
 import 'package:blology_learner/Model/PostModel.dart';
 import 'package:blology_learner/Screens/view/view.dart';
@@ -7,6 +7,8 @@ import 'package:blology_learner/services/postsApi.dart';
 import 'package:flutter/material.dart';
 
 class PostPage extends StatefulWidget {
+  
+
   const PostPage({
     super.key,
   });
@@ -16,8 +18,8 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
-
   List<PostModel> posts = [];
+  
 
   Future<void> fatchPosts() async {
     try {
@@ -59,10 +61,12 @@ class _PostPageState extends State<PostPage> {
                   scrollDirection: Axis.vertical,
                   itemCount: posts.length,
                   itemBuilder: (context, index) {
-                    final catagorys = posts[index];
-                    final name = catagorys.postName;
-                    final mataTitel = catagorys.metaTitle;
-                    final image = catagorys.image;
+                    final post = posts[index];
+                    final name = post.postName;
+                    final mataTitel = post.metaTitle;
+                    final image = post.image;
+                    final c_id = post.categoryId;
+                    final categoryName = name;
                     return InkWell(
                       onTap: () {
                         Navigator.push(
@@ -70,10 +74,11 @@ class _PostPageState extends State<PostPage> {
                             MaterialPageRoute(
                                 builder: (context) => const ViewPost()));
                       },
-                      child: PostItem(
+                      child:PostItem(
                         image: image,
                         name: name,
                         matatitle: mataTitel,
+                        categoryName:categoryName,
                       ),
                     );
                   },

@@ -4,10 +4,13 @@ class PostItem extends StatelessWidget {
   final String image;
   final String name;
   final String matatitle;
-  const PostItem({super.key, 
-  required this.image, 
-  required this.name, 
-  required this.matatitle,
+  final String categoryName;
+  const PostItem({
+    super.key,
+    required this.image,
+    required this.name,
+    required this.matatitle, 
+    required this.categoryName,
   });
 
   @override
@@ -86,12 +89,35 @@ class PostItem extends StatelessWidget {
             ),
             const Positioned(
               right: 12,
-              top: 9,
+              top: 15,
               child: SizedBox(
                 child: Icon(
-                  Icons.favorite,
+                  Icons.favorite_border_outlined,
                   color: Colors.pinkAccent,
                   size: 35,
+                ),
+              ),
+            ),
+            Positioned(
+              left: 100,
+              top: 5.0,
+              child: Padding(
+                padding: const EdgeInsets.all(0.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: const Color.fromARGB(163, 0, 150, 135),
+                      borderRadius: BorderRadius.circular(20)),
+                  child: const Padding(
+                    padding:
+                        EdgeInsets.only(left: 4, right: 4, bottom: 4, top: 2),
+                    child: Text('category',
+                      // categoryName,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
                 ),
               ),
             ),
