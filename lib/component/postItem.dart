@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 class PostItem extends StatelessWidget {
@@ -106,13 +108,14 @@ class PostItem extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                       color: const Color.fromARGB(163, 0, 150, 135),
-                      borderRadius: BorderRadius.circular(20)),
-                  child: const Padding(
+                      borderRadius: BorderRadius.circular(20),),
+                  child: Padding(
                     padding:
-                        EdgeInsets.only(left: 4, right: 4, bottom: 4, top: 2),
-                    child: Text('category',
-                      // categoryName,
-                      style: TextStyle(
+                        const EdgeInsets.only(left: 4, right: 4, bottom: 4, top: 2),
+                    child: Text(
+                      // 'category',
+                       categoryName,
+                      style: const TextStyle(
                           color: Colors.white,
                           fontSize: 13,
                           fontWeight: FontWeight.w500),

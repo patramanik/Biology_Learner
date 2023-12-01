@@ -4,9 +4,15 @@ import 'dart:convert';
 import 'package:blology_learner/Model/PostModel.dart';
 import 'package:http/http.dart' as http;
 
-class PostsApi{
-  static Future<List<PostModel>> getData() async {
-    const url = 'http://127.0.0.1:8000/api/posts';
+
+
+class PostsResponse {
+  final int catagoryId;
+
+  PostsResponse({required this.catagoryId});
+
+  static Future<List<PostModel>> getData(catagoryId) async {
+    final url = 'http://127.0.0.1:8000/api/postdata/$catagoryId';
 
     try {
       final response = await http.get(Uri.parse(url));
@@ -17,13 +23,12 @@ class PostsApi{
         final results = json['Posts'] as List<dynamic>;
 
         // Map the results to a List of Catagory objects
-        List<PostModel> postsList =
-            results.map((e) => PostModel.fromJson(e)).toList();
+        List<PostModel> postList = results.map((e) => PostModel.fromJson(e)).toList();
 
-        print("Fetch Post data completed");
+        print("Fetch category data completed");
 
-        // Return the List of Post objects
-        return postsList;
+        // Return the List of Catagory objects
+        return postList;
       } else {
         throw Exception('Failed to load categories');
       }

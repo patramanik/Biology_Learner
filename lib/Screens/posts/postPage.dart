@@ -1,17 +1,19 @@
-// ignore_for_file: file_names, unnecessary_null_comparison, non_constant_identifier_names
+// ignore_for_file: file_names, unnecessary_null_comparison, non_constant_identifier_names, avoid_print
 
 import 'package:blology_learner/Model/PostModel.dart';
 import 'package:blology_learner/Screens/view/view.dart';
 import 'package:blology_learner/component/postItem.dart';
-import 'package:blology_learner/services/postsApi.dart';
+import 'package:blology_learner/services/PostDataApi.dart';
+// import 'package:blology_learner/services/postsApi.dart';
 import 'package:flutter/material.dart';
 
 class PostPage extends StatefulWidget {
-  
+  final int catagoryId;
+  final String catagoryName;
 
-  const PostPage({
-    super.key,
-  });
+  const PostPage(
+      {Key? key, required this.catagoryId, required this.catagoryName})
+      : super(key: key);
 
   @override
   State<PostPage> createState() => _PostPageState();
@@ -19,11 +21,16 @@ class PostPage extends StatefulWidget {
 
 class _PostPageState extends State<PostPage> {
   List<PostModel> posts = [];
-  
 
-  Future<void> fatchPosts() async {
+  @override
+  void initState() {
+    super.initState();
+    fatchPosts(widget.catagoryId);
+  }
+
+  Future<void> fatchPosts(int catagoryId) async {
     try {
-      List<PostModel> response = await PostsApi.getData();
+      List<PostModel> response = await PostsResponse.getData(catagoryId);
 
       setState(() {
         posts = response;
@@ -31,12 +38,6 @@ class _PostPageState extends State<PostPage> {
     } catch (error) {
       print('Error fetching data: $error');
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    fatchPosts();
   }
 
   @override
@@ -65,20 +66,27 @@ class _PostPageState extends State<PostPage> {
                     final name = post.postName;
                     final mataTitel = post.metaTitle;
                     final image = post.image;
-                    final c_id = post.categoryId;
-                    final categoryName = name;
+                    final postContent = post.postContent;
                     return InkWell(
                       onTap: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ViewPost()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ViewPost(
+                              catagoryName: widget.catagoryName,
+                              postName: name,
+                              mataTitle: mataTitel,
+                              postImages: image,
+                              content: postContent,
+                            ),
+                          ),
+                        );
                       },
-                      child:PostItem(
+                      child: PostItem(
                         image: image,
                         name: name,
                         matatitle: mataTitel,
-                        categoryName:categoryName,
+                        categoryName: widget.catagoryName,
                       ),
                     );
                   },

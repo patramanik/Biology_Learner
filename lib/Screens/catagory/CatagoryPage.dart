@@ -3,7 +3,6 @@
 import 'package:blology_learner/Model/Catagory.dart';
 import 'package:blology_learner/Screens/posts/postPage.dart';
 import 'package:blology_learner/component/catagoyitem.dart';
-// import 'package:blology_learner/Screens/view/view.dart';
 import 'package:blology_learner/component/widgets/myDrawer.dart';
 import 'package:blology_learner/services/catagoryApi.dart';
 import 'package:flutter/material.dart';
@@ -68,9 +67,14 @@ class _CatagoryPageState extends State<CatagoryPage> {
                     return InkWell(
                       onTap: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const PostPage()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PostPage(
+                              catagoryId: catagoryId,
+                              catagoryName: name,
+                            ),
+                          ),
+                        );
                       },
                       child: CatagoryItem(
                         image: image,

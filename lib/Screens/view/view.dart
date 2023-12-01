@@ -2,7 +2,20 @@ import 'package:blology_learner/component/widgets/myDrawer.dart';
 import 'package:flutter/material.dart';
 
 class ViewPost extends StatefulWidget {
-  const ViewPost({super.key});
+  final String catagoryName;
+  final String postName;
+  final String postImages;
+  final String mataTitle;
+  final String content;
+
+  const ViewPost(
+      {Key? key,
+      required this.catagoryName,
+      required this.postName,
+      required this.postImages,
+      required this.content,
+      required this.mataTitle})
+      : super(key: key);
 
   @override
   State<ViewPost> createState() => _ViewPostState();
@@ -14,8 +27,14 @@ class _ViewPostState extends State<ViewPost> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(),
-      drawer: const MyDrawer(),
+      appBar: AppBar(
+        title: Text(
+          widget.postName,
+          style: const TextStyle(fontWeight: FontWeight.w500),
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+      // drawer: const MyDrawer(),
       body: SizedBox(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -30,8 +49,8 @@ class _ViewPostState extends State<ViewPost> {
                       // color: Colors.amberAccent,
                       child: Center(
                         child: ClipRRect(
-                          child: Image.asset(
-                            'assets/images/img1.jpg',
+                          child: Image.network(
+                            widget.postImages,
                             fit: BoxFit.fill,
                             height: height / 2 - 180,
                             width: width,
@@ -46,11 +65,12 @@ class _ViewPostState extends State<ViewPost> {
                         decoration: BoxDecoration(
                             color: const Color.fromARGB(163, 0, 150, 135),
                             borderRadius: BorderRadius.circular(20)),
-                        child: const Padding(
-                          padding: EdgeInsets.all(6.0),
+                        child: Padding(
+                          padding: const EdgeInsets.all(6.0),
                           child: Text(
-                            "Category",
-                            style: TextStyle(
+                            widget.catagoryName,
+                            // "Category",
+                            style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,
                                 fontWeight: FontWeight.w400),
@@ -127,74 +147,31 @@ class _ViewPostState extends State<ViewPost> {
                   // // height: height,
                   width: width,
                   // color: Colors.pink,
-                  child: const Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Padding(
-                        padding: EdgeInsets.all(15.0),
+                        padding: const EdgeInsets.all(15.0),
                         child: Text(
-                          "Bacillariophyta (Diatoms): An Overview",
-                          style: TextStyle(
+                          widget.mataTitle,
+                          // "Bacillariophyta : An Overview",
+                          style: const TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(15.0),
+                        padding: const EdgeInsets.all(15.0),
                         child: Text(
-                          "Algae present in the group"
-                          " Bacillariophyta (class Bacillariophyceae) are known as diatoms."
-                          " They constitute a very large assemblaof unicellular algae."
-                          "Diatoms differ from other algae due to their symmetrical "
-                          "structure and delicately designed cell walls."
-                          " Thus, diatoms are considered the most beautiful microscopic algae.",
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(15.0),
-                        child: Text(
-                          "Algae present in the group"
-                          " Bacillariophyta (class Bacillariophyceae) are known as diatoms."
-                          " They constitute a very large assemblaof unicellular algae."
-                          "Diatoms differ from other algae due to their symmetrical "
-                          "structure and delicately designed cell walls."
-                          " Thus, diatoms are considered the most beautiful microscopic algae.",
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(15.0),
-                        child: Text(
-                          "Algae present in the group"
-                          " Bacillariophyta (class Bacillariophyceae) are known as diatoms."
-                          " They constitute a very large assemblaof unicellular algae."
-                          "Diatoms differ from other algae due to their symmetrical "
-                          "structure and delicately designed cell walls."
-                          " Thus, diatoms are considered the most beautiful microscopic algae.",
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(15.0),
-                        child: Text(
-                          "Algae present in the group"
-                          " Bacillariophyta (class Bacillariophyceae) are known as diatoms."
-                          " They constitute a very large assemblaof unicellular algae."
-                          "Diatoms differ from other algae due to their symmetrical "
-                          "structure and delicately designed cell walls."
-                          " Thus, diatoms are considered the most beautiful microscopic algae.",
-                          style: TextStyle(
+                          widget.content,
+                          // "Algae present in the group"
+                          // " Bacillariophyta (class Bacillariophyceae) are known as diatoms."
+                          // " They constitute a very large assemblaof unicellular algae."
+                          // "Diatoms differ from other algae due to their symmetrical "
+                          // "structure and delicately designed cell walls."
+                          // " Thus, diatoms are considered the most beautiful microscopic algae.",
+                          style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.w400,
                           ),
