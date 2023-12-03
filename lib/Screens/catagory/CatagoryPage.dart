@@ -15,6 +15,7 @@ class CatagoryPage extends StatefulWidget {
 }
 
 class _CatagoryPageState extends State<CatagoryPage> {
+ 
   List<Catagory> catagory = [];
 
   Future<void> fatchCatagory() async {
