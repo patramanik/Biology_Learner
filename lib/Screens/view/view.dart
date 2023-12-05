@@ -1,5 +1,6 @@
-import 'package:blology_learner/component/widgets/myDrawer.dart';
+// import 'package:blology_learner/component/widgets/myDrawer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 class ViewPost extends StatefulWidget {
   final String catagoryName;
@@ -24,6 +25,7 @@ class ViewPost extends StatefulWidget {
 class _ViewPostState extends State<ViewPost> {
   @override
   Widget build(BuildContext context) {
+     final postcontent = widget.content;
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -163,19 +165,7 @@ class _ViewPostState extends State<ViewPost> {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: Text(
-                          widget.content,
-                          // "Algae present in the group"
-                          // " Bacillariophyta (class Bacillariophyceae) are known as diatoms."
-                          // " They constitute a very large assemblaof unicellular algae."
-                          // "Diatoms differ from other algae due to their symmetrical "
-                          // "structure and delicately designed cell walls."
-                          // " Thus, diatoms are considered the most beautiful microscopic algae.",
-                          style: const TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
+                        child: HtmlWidget(postcontent),
                       ),
                     ],
                   ),
