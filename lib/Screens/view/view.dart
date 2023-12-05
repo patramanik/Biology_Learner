@@ -1,4 +1,6 @@
 // import 'package:blology_learner/component/widgets/myDrawer.dart';
+import 'package:blology_learner/Screens/Likes/LikesPage.dart';
+import 'package:blology_learner/Screens/commind/postCommint.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
@@ -25,7 +27,7 @@ class ViewPost extends StatefulWidget {
 class _ViewPostState extends State<ViewPost> {
   @override
   Widget build(BuildContext context) {
-     final postcontent = widget.content;
+    final postcontent = widget.content;
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -102,15 +104,24 @@ class _ViewPostState extends State<ViewPost> {
                                 blurStyle: BlurStyle.normal),
                           ],
                         ),
-                        child: const Row(
+                        child: Row(
                           children: [
                             Expanded(
-                                child: Icon(
-                              Icons.favorite,
-                              color: Colors.pink,
-                              size: 40,
-                            )),
-                            VerticalDivider(
+                              child: IconButton(
+                                icon: const Icon(Icons.favorite,
+                                    color: Colors.pink, size: 40),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const LikesPage(),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            const VerticalDivider(
                               width: 5,
                               thickness: 3,
                               color: Colors.black45,
@@ -118,19 +129,28 @@ class _ViewPostState extends State<ViewPost> {
                               endIndent: 10,
                             ),
                             Expanded(
-                                child: Icon(
-                              Icons.comment,
-                              color: Colors.teal,
-                              size: 40,
-                            )),
-                            VerticalDivider(
+                              child: IconButton(
+                                icon: const Icon(Icons.comment,
+                                    color: Colors.teal, size: 40),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const PostApiComment(),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            const VerticalDivider(
                               width: 5,
                               thickness: 3,
                               color: Colors.black45,
                               indent: 10,
                               endIndent: 10,
                             ),
-                            Expanded(
+                            const Expanded(
                                 child: Icon(
                               Icons.share,
                               color: Colors.blue,
