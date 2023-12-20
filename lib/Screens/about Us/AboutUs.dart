@@ -34,6 +34,8 @@
 //               );
 //             });
 
+// ignore_for_file: file_names, duplicate_ignore
+
 //         if (value != null) {
 //           return Future.value(value);
 //         } else {
@@ -101,6 +103,8 @@
 //   }
 // }
 // ignore: file_names
+
+
 import 'package:blology_learner/component/widgets/myDrawer.dart';
 import 'package:flutter/material.dart';
 

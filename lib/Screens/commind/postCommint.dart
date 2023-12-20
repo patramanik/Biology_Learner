@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -17,8 +19,8 @@ class _PostApiCommentState extends State<PostApiComment> {
 
   Future<void> postData() async {
     const String apiUrl =
-        'http://127.0.0.1:8000/api/comment'; // Replace with your actual API endpoint
-
+        'http://127.0.0.1:8000/api/comment'; 
+      
     final response = await http.post(
       Uri.parse(apiUrl),
       body: {
