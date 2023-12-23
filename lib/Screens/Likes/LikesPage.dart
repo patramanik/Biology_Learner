@@ -13,8 +13,8 @@ class LikesPage extends StatefulWidget {
 class _LikesPageState extends State<LikesPage> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-       appBar: AppBar(
+    return Scaffold(
+      appBar: AppBar(
         title: const Center(
           child: Text(
             "Likes",
@@ -27,7 +27,11 @@ class _LikesPageState extends State<LikesPage> {
       ),
       drawer: const MyDrawer(),
       // bottomNavigationBar: const MyBottemNave(),
-      body: const SizedBox(child: Center(child: Text("Likes"))),
+      body: const SizedBox(
+        child: Center(
+          child: Text("Likes"),
+        ),
+      ),
     );
   }
 }

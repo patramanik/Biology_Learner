@@ -104,7 +104,6 @@
 // }
 // ignore: file_names
 
-
 import 'package:blology_learner/component/widgets/myDrawer.dart';
 import 'package:flutter/material.dart';
 
@@ -205,52 +204,71 @@ class AboutUsPage extends StatelessWidget {
                     border: Border(
                       bottom: BorderSide(
                         color: Colors.white,
-                        width: 3.0,
+                        width: 1.0,
                       ),
                     ),
                   ),
 
                   child: const Padding(
-                    padding: EdgeInsets.only(top: 70),
-                    child: Text(
-                      "Our Teams",
-                      style: TextStyle(fontSize: 40, color: Colors.white),
+                    padding: EdgeInsets.all(8.0),
+                    child: Center(
+                      child: Text(
+                        "Our Teams",
+                        style: TextStyle(fontSize: 40, color: Colors.white),
+                      ),
                     ),
                   ),
                 ),
                 const SizedBox(
                   height: 30,
                 ),
-                const Expanded(
-                  child: Text(
-                    "Sagar Aryal, Founder and Head of Content\n Faith Mokobi, Content Writer\n Anupama Sapkota, Content Writer\n Laxmi Neupane, Content Writer\n Sushmita Baniya, Content Writer\n Sanjogta Thapa Magar, Content Writer\n Reeju Sharma, Content Writer \n Dr. Frank O'Neill, Advisor \n Pratik Shrestha, Developer",
-                    style: TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                ),
-                Container(
-                  // color: Colors.pink,
-                  // height: 100,
-                  padding: const EdgeInsets.only(bottom: 90, right: 100),
-
-                  child: TextButton(
-                    style: TextButton.styleFrom(backgroundColor: Colors.green),
-                    onPressed: null,
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 15.0, vertical: 8.0),
+                  child: SizedBox(
+                    width: width,
                     child: const Text(
-                      "Contact Us",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      "Sagar Aryal, Founder and Head of Content Faith Mokobi,"
+                      "Content Writer Anupama Sapkota, Content Writer"
+                      " Laxmi Neupane, Content Writer Sushmita Baniya,"
+                      " Content Writer Sanjogta Thapa Magar,"
+                      "Content Writer Reeju Sharma, Content Writer "
+                      "Dr. Frank O'Neill, Advisor Pratik Shrestha, Developer",
+                      style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    child: TextButton(
+                      style: TextButton.styleFrom(backgroundColor: Colors.green),
+                      onPressed: null,
+                      child: const Text(
+                        "Contact Us",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                    ),
+                  ),
                 ),
-                const Text(
-                  "Developed by ESign Technology",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 22,
-                      fontStyle: FontStyle.italic),
+                SizedBox(
+                  height: height*0.02-5,
                 ),
+                 Padding(
+                   padding: const EdgeInsets.all(8.0),
+                   child: SizedBox(
+                    width: width,
+                     child:  Center(
+                       child: Text(
+                        "Developed by MANIK PATRA",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: width * 0.06,
+                            fontStyle: FontStyle.italic),
+                                     ),
+                     ),
+                   ),
+                 ),
               ],
             ),
           ),
