@@ -1,12 +1,14 @@
 // ignore_for_file: file_names, unnecessary_null_comparison, non_constant_identifier_names, avoid_print
 
+
 import 'package:blology_learner/Model/PostModel.dart';
-import 'package:blology_learner/Screens/Likes/LikesPage.dart';
+import 'package:blology_learner/Provider/favouiter_provider.dart';
 import 'package:blology_learner/Screens/view/view.dart';
 import 'package:blology_learner/component/postItem.dart';
 import 'package:blology_learner/services/PostDataApi.dart';
 // import 'package:blology_learner/services/postsApi.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PostPage extends StatefulWidget {
   final int catagoryId;
@@ -22,7 +24,7 @@ class PostPage extends StatefulWidget {
 
 class _PostPageState extends State<PostPage> {
   List<PostModel> posts = [];
-  
+  List<int> selectedItem = [];
 
   @override
   void initState() {
@@ -44,6 +46,8 @@ class _PostPageState extends State<PostPage> {
 
   @override
   Widget build(BuildContext context) {
+    // final favouriteitemProvider = Provider.of<FavouriteItemProvider>(context);
+    print("bild");
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -65,47 +69,60 @@ class _PostPageState extends State<PostPage> {
                   itemCount: posts.length,
                   itemBuilder: (context, index) {
                     final post = posts[index];
+                    final pId = post.id;
                     final name = post.postName;
                     final mataTitel = post.metaTitle;
                     final image = post.image;
                     final postContent = post.postContent;
-                    return InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ViewPost(
-                              catagoryName: widget.catagoryName,
-                              postName: name,
-                              mataTitle: mataTitel,
-                              postImages: image,
-                              content: postContent,
-                            ),
-                          ),
-                        );
-                      },
-                      child: PostItem(
-                        image: image,
-                        name: name,
-                        matatitle: mataTitel,
-                        categoryName: widget.catagoryName,
-                        child: IconButton(
-                          icon: const Icon(
-                            Icons.favorite,
-                            color: Colors.pink,
-                            size: 30,
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const LikesPage(),
+                    return Consumer<FavouriteItemProvider>(
+                        builder: (context, value, child) {
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ViewPost(
+                                catagoryName: widget.catagoryName,
+                                postName: name,
+                                mataTitle: mataTitel,
+                                postImages: image,
+                                content: postContent,
                               ),
-                            );
-                          },
+                            ),
+                          );
+                        },
+                        child: PostItem(
+                          image: image,
+                          name: name,
+                          matatitle: mataTitel,
+                          categoryName: widget.catagoryName,
+                          child: IconButton(
+                            icon: Icon(
+                              value.selectedItem.contains(pId)
+                                  ? Icons.favorite
+                                  : Icons.favorite_border_outlined,
+
+                              // Icons.favorite,
+                              color: Colors.pink,
+                              size: 30,
+                            ),
+                            onPressed: () {
+                              if (value.selectedItem.contains(pId)) {
+                                value.removeItem(pId);
+                              } else {
+                                value.addItem(pId);
+                              }
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => const LikesPage(),
+                              //   ),
+                              // );
+                            },
+                          ),
                         ),
-                      ),
-                    );
+                      );
+                    });
                   },
                 ),
         ),

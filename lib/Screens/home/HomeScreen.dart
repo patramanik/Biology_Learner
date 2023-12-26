@@ -2,13 +2,14 @@
 
 import 'package:blology_learner/Model/BodyPost.dart';
 import 'package:blology_learner/Model/HomePostModel.dart';
-import 'package:blology_learner/Screens/Likes/LikesPage.dart';
+import 'package:blology_learner/Provider/favouiter_provider.dart';
 import 'package:blology_learner/Screens/view/view.dart';
 import 'package:blology_learner/component/blogItem.dart';
 import 'package:blology_learner/component/postItem.dart';
 import 'package:blology_learner/services/homeBodyApi.dart';
 import 'package:blology_learner/services/homePostApi.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../component/widgets/myDrawer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<HomePostModel> homePosts = [];
   List<BodyPostModel> bodyPosts = [];
   bool isLoading = true; // Track loading state
+  List<int> selectedItem = [];
 
   Future<void> fetchHomePosts() async {
     try {
@@ -136,46 +138,62 @@ class _HomeScreenState extends State<HomeScreen> {
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
                   final bodyPost = bodyPosts[index];
+                  final pId = bodyPost.id;
                   final name = bodyPost.postName;
                   final categoryName = bodyPost.categoryName;
                   final metaTitle = bodyPost.metaTitle;
                   final image = bodyPost.image;
                   final postContent = bodyPost.postContent;
 
-                  return InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ViewPost(
-                            catagoryName: categoryName,
-                            postName: name,
-                            postImages: image,
-                            content: postContent,
-                            mataTitle: metaTitle,
-                          ),
-                        ),
-                      );
-                    },
-                    child: PostItem(
-                      categoryName: categoryName,
-                      image: image,
-                      name: name,
-                      matatitle: metaTitle,
-                      child: IconButton(
-                        icon: const Icon(Icons.favorite,
-                            color: Colors.pink, size: 30),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const LikesPage(),
+                  return Consumer<FavouriteItemProvider>(
+                      builder: (context, value, child) {
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ViewPost(
+                              catagoryName: categoryName,
+                              postName: name,
+                              mataTitle: metaTitle,
+                              postImages: image,
+                              content: postContent,
                             ),
-                          );
-                        },
+                          ),
+                        );
+                      },
+                      child: PostItem(
+                        image: image,
+                        name: name,
+                        matatitle: metaTitle,
+                        categoryName: categoryName,
+                        child: IconButton(
+                          icon: Icon(
+                            value.selectedItem.contains(pId)
+                                ? Icons.favorite
+                                : Icons.favorite_border_outlined,
+
+                            // Icons.favorite,
+                            color: Colors.pink,
+                            size: 30,
+                          ),
+                          onPressed: () {
+                            if (value.selectedItem.contains(pId)) {
+                              value.removeItem(pId);
+                            } else {
+                              value.addItem(pId);
+                            }
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => const LikesPage(),
+                            //   ),
+                            // );
+                          },
+                        ),
                       ),
-                    ),
-                  );
+                    );
+                  });
                 },
               ),
             ),
