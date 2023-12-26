@@ -196,26 +196,12 @@ class AboutUsPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.only(
-                    right: 50,
-                  ), // color: Colors.red,
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Colors.white,
-                        width: 1.0,
-                      ),
-                    ),
-                  ),
-
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Text(
-                        "Our Teams",
-                        style: TextStyle(fontSize: 40, color: Colors.white),
-                      ),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Center(
+                    child: Text(
+                      "Our Teams",
+                      style: TextStyle(fontSize: 40, color: Colors.white),
                     ),
                   ),
                 ),

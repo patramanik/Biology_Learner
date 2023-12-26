@@ -18,9 +18,8 @@ class _PostApiCommentState extends State<PostApiComment> {
   String successMessage = '';
 
   Future<void> postData() async {
-    const String apiUrl =
-        'http://127.0.0.1:8000/api/comment'; 
-      
+    const String apiUrl = 'http://127.0.0.1:8000/api/comment';
+
     final response = await http.post(
       Uri.parse(apiUrl),
       body: {
@@ -50,7 +49,15 @@ class _PostApiCommentState extends State<PostApiComment> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Post API Example'),
+        title: const Center(
+          child: Text(
+            "Commint",
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -59,17 +66,23 @@ class _PostApiCommentState extends State<PostApiComment> {
           children: [
             TextField(
               controller: userNameController,
-              decoration: const InputDecoration(labelText: 'User Name'),
+              decoration: const InputDecoration(
+                labelText: 'Name',
+              ),
             ),
             const SizedBox(height: 10),
             TextField(
               controller: userEmailController,
-              decoration: const InputDecoration(labelText: 'User Email'),
+              decoration: const InputDecoration(
+                labelText: 'Email',
+              ),
             ),
             const SizedBox(height: 10),
             TextField(
               controller: commentController,
-              decoration: const InputDecoration(labelText: 'Comment'),
+              decoration: const InputDecoration(
+                labelText: 'Comment',
+              ),
             ),
             const SizedBox(height: 20),
             ElevatedButton(

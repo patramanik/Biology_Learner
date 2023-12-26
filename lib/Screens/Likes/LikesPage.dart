@@ -11,7 +11,7 @@ import '../../component/widgets/myDrawer.dart';
 import 'package:flutter/material.dart';
 
 class LikesPage extends StatefulWidget {
-  const LikesPage({super.key});
+  const LikesPage({Key? key}) : super(key: key);
 
   @override
   State<LikesPage> createState() => _LikesPageState();
@@ -19,7 +19,7 @@ class LikesPage extends StatefulWidget {
 
 class _LikesPageState extends State<LikesPage> {
   List<BodyPostModel> licksPosts = [];
-  
+  List<int> selectedItem = [];
 
   Future<void> fetchBodyPosts() async {
     try {
@@ -59,68 +59,65 @@ class _LikesPageState extends State<LikesPage> {
       drawer: const MyDrawer(),
       body: SizedBox(
         child: Center(
-          child: favouriteitemProvider.selectedItem.isEmpty
-              ? const CircularProgressIndicator()
+          child: licksPosts.isEmpty
+              ? const Center(child: Text("Empty!"))
               : ListView.builder(
                   scrollDirection: Axis.vertical,
                   itemCount: favouriteitemProvider.selectedItem.length,
                   itemBuilder: (context, index) {
-                    final post = licksPosts[index];
-                    final pId = post.id;
-                    final name = post.postName;
-                    final mataTitel = post.metaTitle;
-                    final image = post.image;
-                    final postContent = post.postContent;
-                    final catagoryName = post.categoryName;
-                    return Consumer<FavouriteItemProvider>(
+                    if (index < licksPosts.length) {
+                      final post = licksPosts[index];
+                      final pId = post.id;
+                      final name = post.postName;
+                      final mataTitel = post.metaTitle;
+                      final image = post.image;
+                      final postContent = post.postContent;
+                      final catagoryName = post.categoryName;
+                      return Consumer<FavouriteItemProvider>(
                         builder: (context, value, child) {
-                      return InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ViewPost(
-                                catagoryName: catagoryName,
-                                postName: name,
-                                mataTitle: mataTitel,
-                                postImages: image,
-                                content: postContent,
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ViewPost(
+                                    catagoryName: catagoryName,
+                                    postName: name,
+                                    mataTitle: mataTitel,
+                                    postImages: image,
+                                    content: postContent,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: PostItem(
+                              image: image,
+                              name: name,
+                              matatitle: mataTitel,
+                              categoryName: catagoryName,
+                              child: IconButton(
+                                icon: Icon(
+                                  value.selectedItem.contains(pId)
+                                      ? Icons.favorite
+                                      : Icons.favorite_border_outlined,
+                                  color: Colors.pink,
+                                  size: 30,
+                                ),
+                                onPressed: () {
+                                  if (value.selectedItem.contains(pId)) {
+                                    value.removeItem(pId);
+                                  } else {
+                                    value.addItem(pId);
+                                  }
+                                },
                               ),
                             ),
                           );
                         },
-                        child: PostItem(
-                          image: image,
-                          name: name,
-                          matatitle: mataTitel,
-                          categoryName: catagoryName,
-                          child: IconButton(
-                            icon: Icon(
-                              value.selectedItem.contains(pId)
-                                  ? Icons.favorite
-                                  : Icons.favorite_border_outlined,
-
-                              // Icons.favorite,
-                              color: Colors.pink,
-                              size: 30,
-                            ),
-                            onPressed: () {
-                              if (value.selectedItem.contains(pId)) {
-                                value.removeItem(pId);
-                              } else {
-                                value.addItem(pId);
-                              }
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) => const LikesPage(),
-                              //   ),
-                              // );
-                            },
-                          ),
-                        ),
                       );
-                    });
+                    } else {
+                      return const SizedBox(); // handle out-of-bounds index
+                    }
                   },
                 ),
         ),
