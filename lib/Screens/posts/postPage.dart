@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, unnecessary_null_comparison, non_constant_identifier_names, avoid_print
 
 import 'package:blology_learner/Model/PostModel.dart';
+import 'package:blology_learner/Screens/Likes/LikesPage.dart';
 import 'package:blology_learner/Screens/view/view.dart';
 import 'package:blology_learner/component/postItem.dart';
 import 'package:blology_learner/services/PostDataApi.dart';
@@ -21,6 +22,7 @@ class PostPage extends StatefulWidget {
 
 class _PostPageState extends State<PostPage> {
   List<PostModel> posts = [];
+  
 
   @override
   void initState() {
@@ -87,6 +89,21 @@ class _PostPageState extends State<PostPage> {
                         name: name,
                         matatitle: mataTitel,
                         categoryName: widget.catagoryName,
+                        child: IconButton(
+                          icon: const Icon(
+                            Icons.favorite,
+                            color: Colors.pink,
+                            size: 30,
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const LikesPage(),
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     );
                   },

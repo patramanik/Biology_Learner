@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+
 import '../../component/widgets/myDrawer.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,7 @@ class _LikesPageState extends State<LikesPage> {
         ),
       ),
       drawer: const MyDrawer(),
-      // bottomNavigationBar: const MyBottemNave(),
+      // bottomNavigationBar:  MyBottemNave(),
       body: const SizedBox(
         child: Center(
           child: Text("Likes"),

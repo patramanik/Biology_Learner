@@ -1,7 +1,8 @@
-// ignore_for_file: file_names, avoid_print
+// ignore_for_file: file_names, avoid_print, unnecessary_null_comparison
 
 import 'package:blology_learner/Model/BodyPost.dart';
 import 'package:blology_learner/Model/HomePostModel.dart';
+import 'package:blology_learner/Screens/Likes/LikesPage.dart';
 import 'package:blology_learner/Screens/view/view.dart';
 import 'package:blology_learner/component/blogItem.dart';
 import 'package:blology_learner/component/postItem.dart';
@@ -79,50 +80,54 @@ class _HomeScreenState extends State<HomeScreen> {
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
-            if (isLoading)
-              const Center(child: CircularProgressIndicator())
-            else
-              SizedBox(
-                width: width,
-                height: height / 2 - 100,
-                child: ListView.builder(
-                  itemCount: homePosts.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    final post = homePosts[index];
-                    final name = post.postName;
-                    final categoryName = post.categoryName;
-                    final metaTitle = post.metaTitle;
-                    final image = post.image;
-                    final postContent = post.postContent;
+            // if (isLoading)
+            //   const CircularProgressIndicator()
+            // else
+            SizedBox(
+              width: width,
+              height: height / 2 - 100,
+              child: Center(
+                child: HomePostModel == null
+                    ? const CircularProgressIndicator()
+                    : ListView.builder(
+                        itemCount: homePosts.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          final post = homePosts[index];
+                          final name = post.postName;
+                          final categoryName = post.categoryName;
+                          final metaTitle = post.metaTitle;
+                          final image = post.image;
+                          final postContent = post.postContent;
 
-                    return InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ViewPost(
-                              catagoryName: categoryName,
-                              postName: name,
-                              postImages: image,
-                              content: postContent,
-                              mataTitle: metaTitle,
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ViewPost(
+                                    catagoryName: categoryName,
+                                    postName: name,
+                                    postImages: image,
+                                    content: postContent,
+                                    mataTitle: metaTitle,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: BlogItem(
+                                name: name,
+                                catagoryName: categoryName,
+                                image: image,
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: BlogItem(
-                          name: name,
-                          catagoryName: categoryName,
-                          image: image,
-                        ),
+                          );
+                        },
                       ),
-                    );
-                  },
-                ),
               ),
+            ),
             SizedBox(
               width: width,
               height: height,
@@ -157,6 +162,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       image: image,
                       name: name,
                       matatitle: metaTitle,
+                      child: IconButton(
+                        icon: const Icon(Icons.favorite,
+                            color: Colors.pink, size: 30),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LikesPage(),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   );
                 },

@@ -7,12 +7,14 @@ class PostItem extends StatelessWidget {
   final String name;
   final String matatitle;
   final String categoryName;
+  final Widget? child;
   const PostItem({
     super.key,
     required this.image,
     required this.name,
-    required this.matatitle, 
+    required this.matatitle,
     required this.categoryName,
+    this.child,
   });
 
   @override
@@ -46,13 +48,21 @@ class PostItem extends StatelessWidget {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        top: 2, bottom: 2, left: 8.0, right: 8.0),
+                      top: 2,
+                      bottom: 2,
+                      left: 8.0,
+                      right: 8.0,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(
-                              top: 8.0, left: 3.0, right: 5.0, bottom: 5.0),
+                            top: 15.0,
+                            left: 3.0,
+                            right: 5.0,
+                            bottom: 5.0,
+                          ),
                           child: SizedBox(
                             child: Text(
                               name,
@@ -68,7 +78,7 @@ class PostItem extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(
-                          height: 10.0,
+                          height: 5.0,
                         ),
                         SizedBox(
                           child: Text(
@@ -89,15 +99,16 @@ class PostItem extends StatelessWidget {
                 ),
               ],
             ),
-            const Positioned(
-              right: 12,
-              top: 15,
+             Positioned(
+              right: 0.0,
+              top: 0.0,
               child: SizedBox(
-                child: Icon(
-                  Icons.favorite_border_outlined,
-                  color: Colors.pinkAccent,
-                  size: 35,
-                ),
+                child:child, 
+                // Icon(
+                //   Icons.favorite,
+                //   color: Colors.pinkAccent,
+                //   size: 30,
+                // ),
               ),
             ),
             Positioned(
@@ -107,14 +118,15 @@ class PostItem extends StatelessWidget {
                 padding: const EdgeInsets.all(0.0),
                 child: Container(
                   decoration: BoxDecoration(
-                      color: const Color.fromARGB(163, 0, 150, 135),
-                      borderRadius: BorderRadius.circular(20),),
+                    color: const Color.fromARGB(163, 0, 150, 135),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 4, right: 4, bottom: 4, top: 2),
+                    padding: const EdgeInsets.only(
+                        left: 4, right: 4, bottom: 4, top: 2),
                     child: Text(
                       // 'category',
-                       categoryName,
+                      categoryName,
                       style: const TextStyle(
                           color: Colors.white,
                           fontSize: 13,
