@@ -3,6 +3,7 @@
 import 'package:blology_learner/Model/Catagory.dart';
 import 'package:blology_learner/Screens/posts/postPage.dart';
 import 'package:blology_learner/component/catagoyitem.dart';
+import 'package:blology_learner/component/widgets/CustomAppBar.dart';
 import 'package:blology_learner/component/widgets/myDrawer.dart';
 import 'package:blology_learner/services/catagoryApi.dart';
 import 'package:flutter/material.dart';
@@ -40,15 +41,15 @@ class _CatagoryPageState extends State<CatagoryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text(
-            "Catagory",
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
+        centerTitle: true,
+        title:const CustomAppBar(),
+        // const Text(
+        //   "Catagory",
+        //   style: TextStyle(
+        //     color: Colors.black,
+        //     fontWeight: FontWeight.w500,
+        //   ),
+        // ),
       ),
       drawer: const MyDrawer(),
       // bottomNavigationBar: const MyBottemNave(),

@@ -5,6 +5,7 @@ import 'package:blology_learner/Model/PostModel.dart';
 import 'package:blology_learner/Provider/favouiter_provider.dart';
 import 'package:blology_learner/Screens/view/view.dart';
 import 'package:blology_learner/component/postItem.dart';
+import 'package:blology_learner/component/widgets/CustomAppBar.dart';
 import 'package:blology_learner/services/PostDataApi.dart';
 // import 'package:blology_learner/services/postsApi.dart';
 import 'package:flutter/material.dart';
@@ -50,15 +51,15 @@ class _PostPageState extends State<PostPage> {
     print("bild");
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text(
-            "Post",
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
+        centerTitle: true,
+        title: const CustomAppBar(),
+        // Text(
+        //   "Post",
+        //   style: TextStyle(
+        //     color: Colors.black,
+        //     fontWeight: FontWeight.w500,
+        //   ),
+        // ),
       ),
       body: SizedBox(
         child: Center(

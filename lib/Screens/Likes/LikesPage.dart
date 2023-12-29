@@ -4,6 +4,7 @@ import 'package:blology_learner/Model/BodyPost.dart';
 import 'package:blology_learner/Provider/favouiter_provider.dart';
 import 'package:blology_learner/Screens/view/view.dart';
 import 'package:blology_learner/component/postItem.dart';
+import 'package:blology_learner/component/widgets/CustomAppBar.dart';
 import 'package:blology_learner/services/homeBodyApi.dart';
 import 'package:provider/provider.dart';
 
@@ -46,15 +47,15 @@ class _LikesPageState extends State<LikesPage> {
     final favouriteitemProvider = Provider.of<FavouriteItemProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text(
-            "Likes",
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
+        centerTitle: true,
+        title: const CustomAppBar(),
+        // Text(
+        //   "Likes",
+        //   style: TextStyle(
+        //     color: Colors.black,
+        //     fontWeight: FontWeight.w500,
+        //   ),
+        // ),
       ),
       drawer: const MyDrawer(),
       body: SizedBox(

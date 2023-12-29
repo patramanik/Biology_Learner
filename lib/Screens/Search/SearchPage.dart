@@ -2,6 +2,7 @@
 
 import 'package:blology_learner/Screens/view/view.dart';
 import 'package:blology_learner/component/postItem.dart';
+import 'package:blology_learner/component/widgets/CustomAppBar.dart';
 import 'package:blology_learner/component/widgets/myDrawer.dart';
 import 'package:flutter/material.dart';
 
@@ -54,15 +55,15 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text(
-            "Search",
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
+        centerTitle: true,
+        title: const CustomAppBar(),
+        // Text(
+        //   "Search",
+        //   style: TextStyle(
+        //     color: Colors.black,
+        //     fontWeight: FontWeight.w500,
+        //   ),
+        // ),
       ),
       drawer: const MyDrawer(),
       body: Column(

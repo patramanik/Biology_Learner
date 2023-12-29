@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:blology_learner/component/widgets/CustomAppBar.dart';
 import 'package:blology_learner/component/widgets/myDrawer.dart';
 import 'package:flutter/material.dart';
 
@@ -43,18 +44,14 @@ class _PolicyPageState extends State<PolicyPage> {
           return Future.value(false);
         }
       },
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Center(
-            child: Text(
-              "Privacy Policy",
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-        ),
+      child:Scaffold(
+        appBar:AppBar(
+          centerTitle: true,
+          title: const CustomAppBar(),
+          actions: const [
+            IconButton(onPressed: null, icon: Icon(Icons.more_vert))
+          ],
+        ), 
         drawer: const MyDrawer(),
         body: const SizedBox(child: Center(child: Text("Privacy Policy"))),
       ),

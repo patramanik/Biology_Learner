@@ -6,6 +6,7 @@ import 'package:blology_learner/Provider/favouiter_provider.dart';
 import 'package:blology_learner/Screens/view/view.dart';
 import 'package:blology_learner/component/blogItem.dart';
 import 'package:blology_learner/component/postItem.dart';
+import 'package:blology_learner/component/widgets/CustomAppBar.dart';
 import 'package:blology_learner/services/homeBodyApi.dart';
 import 'package:blology_learner/services/homePostApi.dart';
 import 'package:flutter/material.dart';
@@ -67,15 +68,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text(
-            "Home",
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
+        centerTitle: true,
+        title: const CustomAppBar(),
+        // const Text(
+        //   "Home",
+        //   style: TextStyle(
+        //     color: Colors.black,
+        //     fontWeight: FontWeight.w500,
+        //   ),
+        // ),
       ),
       drawer: const MyDrawer(),
       body: SingleChildScrollView(

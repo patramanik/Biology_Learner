@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:blology_learner/component/widgets/CustomAppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -49,15 +50,15 @@ class _PostApiCommentState extends State<PostApiComment> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text(
-            "Commint",
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
+        centerTitle: true,
+        title: const CustomAppBar(),
+        // Text(
+        //   "Commint",
+        //   style: TextStyle(
+        //     color: Colors.black,
+        //     fontWeight: FontWeight.w500,
+        //   ),
+        // ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
