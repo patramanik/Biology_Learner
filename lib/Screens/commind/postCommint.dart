@@ -19,7 +19,7 @@ class _PostApiCommentState extends State<PostApiComment> {
   String successMessage = '';
 
   Future<void> postData() async {
-    const String apiUrl = 'http://127.0.0.1:8000/api/comment';
+    const String apiUrl = 'https://app.biologylearner.com/api/comment';
 
     final response = await http.post(
       Uri.parse(apiUrl),

@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 class HomeBodyApi {
   static Future<List<BodyPostModel>> getData() async {
-    const url = 'http://127.0.0.1:8000/api/data';
+    const url = 'https://app.biologylearner.com/api/data';
 
     try {
       final response = await http.get(Uri.parse(url));

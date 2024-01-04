@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 
 class CatagoryApi {
  static Future<List<Catagory>> getData() async {
-    const url = 'http://127.0.0.1:8000/api/catagorys';
+    const url = 'https://app.biologylearner.com/api/catagorys';
 
     try {
       final response = await http.get(Uri.parse(url));
