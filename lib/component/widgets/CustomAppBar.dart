@@ -12,7 +12,7 @@ class CustomAppBar extends StatelessWidget {
     return SizedBox(
       child: Image.asset(
         'assets/images/logo.png',
-        height: 30.0,
+        height: 40.0,
       ),
     );
   }

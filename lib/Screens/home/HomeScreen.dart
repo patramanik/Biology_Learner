@@ -80,6 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       drawer: const MyDrawer(),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
@@ -94,6 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ? const CircularProgressIndicator()
                     : ListView.builder(
                         itemCount: homePosts.length,
+                        physics:const BouncingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           final post = homePosts[index];
@@ -136,6 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: height,
               child: ListView.builder(
                 itemCount: bodyPosts.length,
+                physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
                   final bodyPost = bodyPosts[index];

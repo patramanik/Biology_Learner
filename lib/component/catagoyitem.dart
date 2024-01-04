@@ -34,7 +34,7 @@ class CatagoryItem extends StatelessWidget {
                     ),
                     child: Image.network(
                       image,
-                      width: 130,
+                      width: 160,
                       height: 150,
                       fit: BoxFit.fill,
                     ),
@@ -43,7 +43,7 @@ class CatagoryItem extends StatelessWidget {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        top: 2, bottom: 2, left: 8.0, right: 8.0),
+                        top: 2, bottom: 2, left: 10.0, right: 8.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -55,7 +55,7 @@ class CatagoryItem extends StatelessWidget {
                               name,
                               textAlign: TextAlign.start,
                               style: const TextStyle(
-                                fontSize: 22.0,
+                                fontSize: 30.0,
                                 fontWeight: FontWeight.w500,
                                 color: Color.fromARGB(255, 23, 23, 23),
                               ),
@@ -64,22 +64,22 @@ class CatagoryItem extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 10.0,
-                        ),
-                        SizedBox(
-                          child: Text(
-                            matatitle,
-                            textAlign: TextAlign.start,
-                            style: const TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black,
-                            ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
+                        // const SizedBox(
+                        //   height: 10.0,
+                        // ),
+                        // SizedBox(
+                        //   child: Text(
+                        //     matatitle,
+                        //     textAlign: TextAlign.start,
+                        //     style: const TextStyle(
+                        //       fontSize: 18.0,
+                        //       fontWeight: FontWeight.w400,
+                        //       color: Colors.black,
+                        //     ),
+                        //     maxLines: 2,
+                        //     overflow: TextOverflow.ellipsis,
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),

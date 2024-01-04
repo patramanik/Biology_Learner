@@ -39,8 +39,8 @@ class PostItem extends StatelessWidget {
                     ),
                     child: Image.network(
                       image,
-                      width: 130,
-                      height: 150,
+                      width: 160,
+                      height: 155,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -72,7 +72,7 @@ class PostItem extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                                 color: Color.fromARGB(255, 23, 23, 23),
                               ),
-                              maxLines: 2,
+                              maxLines: 3,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -80,19 +80,19 @@ class PostItem extends StatelessWidget {
                         const SizedBox(
                           height: 5.0,
                         ),
-                        SizedBox(
-                          child: Text(
-                            matatitle,
-                            textAlign: TextAlign.start,
-                            style: const TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black,
-                            ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
+                        // SizedBox(
+                        //   child: Text(
+                        //     matatitle,
+                        //     textAlign: TextAlign.start,
+                        //     style: const TextStyle(
+                        //       fontSize: 18.0,
+                        //       fontWeight: FontWeight.w400,
+                        //       color: Colors.black,
+                        //     ),
+                        //     maxLines: 1,
+                        //     overflow: TextOverflow.ellipsis,
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
@@ -112,7 +112,7 @@ class PostItem extends StatelessWidget {
               ),
             ),
             Positioned(
-              left: 100,
+              left: 130,
               top: 5.0,
               child: Padding(
                 padding: const EdgeInsets.all(0.0),
@@ -123,14 +123,14 @@ class PostItem extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        left: 4, right: 4, bottom: 4, top: 2),
+                        left: 5, right: 5, bottom: 4, top: 2),
                     child: Text(
                       // 'category',
                       categoryName,
                       style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w500),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700),
                     ),
                   ),
                 ),
