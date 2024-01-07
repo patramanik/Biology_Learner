@@ -3,6 +3,7 @@
 import 'package:blology_learner/Model/BodyPost.dart';
 import 'package:blology_learner/Provider/favouiter_provider.dart';
 import 'package:blology_learner/Screens/view/view.dart';
+import 'package:blology_learner/SharedPreferences/SharedPreferencesUtil.dart';
 import 'package:blology_learner/component/postItem.dart';
 import 'package:blology_learner/component/widgets/CustomAppBar.dart';
 import 'package:blology_learner/services/homeBodyApi.dart';
@@ -38,6 +39,34 @@ class _LikesPageState extends State<LikesPage> {
   void initState() {
     super.initState();
     fetchBodyPosts();
+    loadSelectedItems();
+  }
+
+  Future<void> loadSelectedItems() async {
+    List<int> loadedItems = await SharedPreferencesUtil.loadSelectedItems();
+    setState(() {
+      selectedItem = loadedItems;
+    });
+  }
+
+  Future<void> saveSelectedItems() async {
+    await SharedPreferencesUtil.saveSelectedItems(selectedItem);
+  }
+
+  Future<void> addItemToSelectedList(int newItem) async {
+    await SharedPreferencesUtil.addItem(newItem);
+
+    setState(() {
+      selectedItem.add(newItem);
+    });
+  }
+
+  Future<void> removeItemFromSelectedList(int removedItem) async {
+    await SharedPreferencesUtil.removeItem(removedItem);
+
+    setState(() {
+      selectedItem.remove(removedItem);
+    });
   }
 
   @override
@@ -61,10 +90,10 @@ class _LikesPageState extends State<LikesPage> {
       body: SizedBox(
         child: Center(
           child: licksPosts.isEmpty
-              ? const Center(child: Text("Empty!"))
+              ? const Center(child: CircularProgressIndicator())
               : ListView.builder(
                   scrollDirection: Axis.vertical,
-                  itemCount: favouriteitemProvider.selectedItem.length,
+                  itemCount: selectedItem.length,
                   itemBuilder: (context, index) {
                     if (index < licksPosts.length) {
                       final post = licksPosts[index];
@@ -99,17 +128,19 @@ class _LikesPageState extends State<LikesPage> {
                               categoryName: catagoryName,
                               child: IconButton(
                                 icon: Icon(
-                                  value.selectedItem.contains(pId)
+                                  selectedItem.contains(pId)
                                       ? Icons.favorite
                                       : Icons.favorite_border_outlined,
                                   color: Colors.pink,
                                   size: 30,
                                 ),
                                 onPressed: () {
-                                  if (value.selectedItem.contains(pId)) {
+                                  if (selectedItem.contains(pId)) {
                                     value.removeItem(pId);
+                                    removeItemFromSelectedList(pId);
                                   } else {
                                     value.addItem(pId);
+                                    addItemToSelectedList(pId);
                                   }
                                 },
                               ),
@@ -118,7 +149,11 @@ class _LikesPageState extends State<LikesPage> {
                         },
                       );
                     } else {
-                      return const SizedBox(); // handle out-of-bounds index
+                      return const SizedBox(
+                        child: Center(
+                          child: Text("Empty!"),
+                        ),
+                      ); // handle out-of-bounds index
                     }
                   },
                 ),

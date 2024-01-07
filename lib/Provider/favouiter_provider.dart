@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class FavouriteItemProvider with ChangeNotifier {
   final List<int> _selectedItem = [];
@@ -15,9 +14,4 @@ class FavouriteItemProvider with ChangeNotifier {
     _selectedItem.remove(value);
     notifyListeners();
   }
-
-  
-    
-
-  
 }

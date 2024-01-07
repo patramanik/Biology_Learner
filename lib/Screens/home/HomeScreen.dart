@@ -212,6 +212,7 @@
 
 // ignore_for_file: unused_local_variable, file_names, avoid_print
 
+import 'package:blology_learner/SharedPreferences/SharedPreferencesUtil.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:blology_learner/Model/HomePostModel.dart';
@@ -223,7 +224,6 @@ import 'package:blology_learner/component/widgets/CustomAppBar.dart';
 import 'package:blology_learner/services/homeBodyApi.dart';
 import 'package:blology_learner/services/homePostApi.dart';
 import 'package:blology_learner/Provider/favouiter_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../component/widgets/myDrawer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -267,28 +267,42 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  // Future<void> saveFavoriteItem(int itemId) async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-
-  //   // Get the current list of favorite items from SharedPreferences
-  //   List<int> favoriteItems = prefs.getIntList('favoriteItems') ?? [];
-
-  //   // Check if the item is already in the favorites
-  //   if (!favoriteItems.contains(itemId)) {
-  //     // Add the item ID to the list
-  //     favoriteItems.add(itemId);
-
-  //     // Save the updated list back to SharedPreferences
-  //     prefs.setIntList('favoriteItems', favoriteItems);
-  //   }
-  // }
-
+  
   @override
   void initState() {
     super.initState();
     fetchHomePosts();
     fetchBodyPosts();
+    loadSelectedItems();
   }
+
+  Future<void> loadSelectedItems() async {
+    List<int> loadedItems = await SharedPreferencesUtil.loadSelectedItems();
+    setState(() {
+      selectedItem = loadedItems;
+    });
+  }
+
+  Future<void> saveSelectedItems() async {
+    await SharedPreferencesUtil.saveSelectedItems(selectedItem);
+  }
+
+  Future<void> addItemToSelectedList(int newItem) async {
+    await SharedPreferencesUtil.addItem(newItem);
+
+    setState(() {
+      selectedItem.add(newItem);
+    });
+  }
+
+  Future<void> removeItemFromSelectedList(int removedItem) async {
+    await SharedPreferencesUtil.removeItem(removedItem);
+
+    setState(() {
+      selectedItem.remove(removedItem);
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -391,17 +405,19 @@ class _HomeScreenState extends State<HomeScreen> {
                           categoryName: categoryName,
                           child: IconButton(
                             icon: Icon(
-                              value.selectedItem.contains(pId)
+                              selectedItem.contains(pId)
                                   ? Icons.favorite
                                   : Icons.favorite_border_outlined,
                               color: Colors.pink,
                               size: 30,
                             ),
                             onPressed: () {
-                              if (value.selectedItem.contains(pId)) {
+                              if (selectedItem.contains(pId)) {
                                 value.removeItem(pId);
+                                removeItemFromSelectedList(pId);
                               } else {
                                 value.addItem(pId);
+                                addItemToSelectedList(pId);
                               }
                             },
                           ),

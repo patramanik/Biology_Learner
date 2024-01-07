@@ -1,15 +1,14 @@
 // ignore_for_file: file_names, unnecessary_null_comparison, non_constant_identifier_names, avoid_print
 
-
 import 'package:blology_learner/Model/PostModel.dart';
 import 'package:blology_learner/Provider/favouiter_provider.dart';
 import 'package:blology_learner/Screens/view/view.dart';
+import 'package:blology_learner/SharedPreferences/SharedPreferencesUtil.dart';
 import 'package:blology_learner/component/postItem.dart';
 import 'package:blology_learner/component/widgets/CustomAppBar.dart';
 import 'package:blology_learner/services/PostDataApi.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class PostPage extends StatefulWidget {
   final int catagoryId;
@@ -47,17 +46,30 @@ class _PostPageState extends State<PostPage> {
   }
 
   Future<void> loadSelectedItems() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<int> loadedItems =
-        (prefs.getStringList('selectedItems') ?? []).map((e) => int.parse(e)).toList();
+    List<int> loadedItems = await SharedPreferencesUtil.loadSelectedItems();
     setState(() {
       selectedItem = loadedItems;
     });
   }
 
   Future<void> saveSelectedItems() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setStringList('selectedItems', selectedItem.map((e) => e.toString()).toList());
+    await SharedPreferencesUtil.saveSelectedItems(selectedItem);
+  }
+
+  Future<void> addItemToSelectedList(int newItem) async {
+    await SharedPreferencesUtil.addItem(newItem);
+
+    setState(() {
+      selectedItem.add(newItem);
+    });
+  }
+
+  Future<void> removeItemFromSelectedList(int removedItem) async {
+    await SharedPreferencesUtil.removeItem(removedItem);
+
+    setState(() {
+      selectedItem.remove(removedItem);
+    });
   }
 
   @override
@@ -108,7 +120,7 @@ class _PostPageState extends State<PostPage> {
                           categoryName: widget.catagoryName,
                           child: IconButton(
                             icon: Icon(
-                              value.selectedItem.contains(pId)
+                              selectedItem.contains(pId)
                                   ? Icons.favorite
                                   : Icons.favorite_border_outlined,
                               color: Colors.pink,
@@ -116,15 +128,14 @@ class _PostPageState extends State<PostPage> {
                             ),
                             onPressed: () {
                               setState(() {
-                                if (value.selectedItem.contains(pId)) {
+                                if (selectedItem.contains(pId)) {
                                   value.removeItem(pId);
-                                  selectedItem.remove(pId);
+                                  removeItemFromSelectedList(pId);
                                 } else {
                                   value.addItem(pId);
-                                  selectedItem.add(pId);
+                                  addItemToSelectedList(pId);
                                 }
                               });
-                              saveSelectedItems();
                             },
                           ),
                         ),
@@ -137,8 +148,6 @@ class _PostPageState extends State<PostPage> {
     );
   }
 }
-
-
 
 // import 'package:blology_learner/Model/PostModel.dart';
 // import 'package:blology_learner/Provider/favouiter_provider.dart';
@@ -272,4 +281,144 @@ class _PostPageState extends State<PostPage> {
 //   }
 // }
 
+// import 'package:blology_learner/Model/PostModel.dart';
+// import 'package:blology_learner/Screens/view/view.dart';
+// import 'package:blology_learner/SharedPreferences/SharedPreferencesUtil.dart';
+// import 'package:blology_learner/component/postItem.dart';
+// import 'package:blology_learner/component/widgets/CustomAppBar.dart';
+// import 'package:blology_learner/services/PostDataApi.dart';
+// import 'package:flutter/material.dart';
 
+// class PostPage extends StatefulWidget {
+//   final int catagoryId;
+//   final String catagoryName;
+
+//   const PostPage(
+//       {Key? key, required this.catagoryId, required this.catagoryName})
+//       : super(key: key);
+
+//   @override
+//   State<PostPage> createState() => _PostPageState();
+// }
+
+// class _PostPageState extends State<PostPage> {
+//   List<PostModel> posts = [];
+//   List<int> selectedItem = [];
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     fatchPosts(widget.catagoryId);
+//     loadSelectedItems();
+//   }
+
+//   Future<void> fatchPosts(int catagoryId) async {
+//     try {
+//       List<PostModel> response = await PostsResponse.getData(catagoryId);
+
+//       setState(() {
+//         posts = response;
+//       });
+//     } catch (error) {
+//       print('Error fetching data: $error');
+//     }
+//   }
+
+//   Future<void> loadSelectedItems() async {
+//     List<int> loadedItems = await SharedPreferencesUtil.loadSelectedItems();
+//     setState(() {
+//       selectedItem = loadedItems;
+//     });
+//   }
+
+//   Future<void> saveSelectedItems() async {
+//     await SharedPreferencesUtil.saveSelectedItems(selectedItem);
+//   }
+
+//   Future<void> addItemToSelectedList(int newItem) async {
+//     await SharedPreferencesUtil.addItem(newItem);
+
+//     setState(() {
+//       selectedItem.add(newItem);
+//     });
+//   }
+
+//   Future<void> removeItemFromSelectedList(int removedItem) async {
+//     await SharedPreferencesUtil.removeItem(removedItem);
+
+//     setState(() {
+//       selectedItem.remove(removedItem);
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     print("build");
+//     return Scaffold(
+//       appBar: AppBar(
+//         centerTitle: true,
+//         title: const CustomAppBar(),
+//       ),
+//       body: SizedBox(
+//         child: Center(
+//           child: posts.isEmpty
+//               ? const CircularProgressIndicator()
+//               : ListView.builder(
+//                   scrollDirection: Axis.vertical,
+//                   itemCount: posts.length,
+//                   itemBuilder: (context, index) {
+//                     final post = posts[index];
+//                     final pId = post.id;
+//                     final name = post.postName;
+//                     final mataTitel = post.metaTitle;
+//                     final image = post.image;
+//                     final postContent = post.postContent;
+
+//                     return InkWell(
+//                       onTap: () {
+//                         Navigator.push(
+//                           context,
+//                           MaterialPageRoute(
+//                             builder: (context) => ViewPost(
+//                               catagoryName: widget.catagoryName,
+//                               postName: name,
+//                               mataTitle: mataTitel,
+//                               postImages: image,
+//                               content: postContent,
+//                               pId: pId,
+//                             ),
+//                           ),
+//                         );
+//                       },
+//                       child: PostItem(
+//                         image: image,
+//                         name: name,
+//                         matatitle: mataTitel,
+//                         categoryName: widget.catagoryName,
+//                         child: IconButton(
+//                           icon: Icon(
+//                             selectedItem.contains(pId)
+//                                 ? Icons.favorite
+//                                 : Icons.favorite_border_outlined,
+//                             color: Colors.pink,
+//                             size: 30,
+//                           ),
+//                           onPressed: () {
+//                             setState(() {
+//                               if (selectedItem.contains(pId)) {
+//                                  removeItemFromSelectedList(pId);
+//                               } else {
+//                                 addItemToSelectedList(pId);
+//                               }
+//                             });
+//                           },
+//                         ),
+//                       ),
+//                     );
+//                   },
+//                 ),
+//         ),
+//       ),
+//     );
+//   }
+// }

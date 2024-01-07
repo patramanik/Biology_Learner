@@ -2,6 +2,7 @@
 import 'package:blology_learner/Provider/favouiter_provider.dart';
 import 'package:blology_learner/Screens/Likes/LikesPage.dart';
 import 'package:blology_learner/Screens/commind/postCommint.dart';
+import 'package:blology_learner/SharedPreferences/SharedPreferencesUtil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:provider/provider.dart';
@@ -30,6 +31,41 @@ class ViewPost extends StatefulWidget {
 
 class _ViewPostState extends State<ViewPost> {
   List<int> selectedItem = [];
+
+  Future<void> loadSelectedItems() async {
+    List<int> loadedItems = await SharedPreferencesUtil.loadSelectedItems();
+    setState(() {
+      selectedItem = loadedItems;
+    });
+  }
+
+  Future<void> saveSelectedItems() async {
+    await SharedPreferencesUtil.saveSelectedItems(selectedItem);
+  }
+
+  Future<void> addItemToSelectedList(int newItem) async {
+    await SharedPreferencesUtil.addItem(newItem);
+
+    setState(() {
+      selectedItem.add(newItem);
+    });
+  }
+
+  Future<void> removeItemFromSelectedList(int removedItem) async {
+    await SharedPreferencesUtil.removeItem(removedItem);
+
+    setState(() {
+      selectedItem.remove(removedItem);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadSelectedItems();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     final postcontent = widget.content;
@@ -121,11 +157,13 @@ class _ViewPostState extends State<ViewPost> {
                                       color: Colors.pink,
                                       size: 40),
                                   onPressed: () {
-                                    if (value.selectedItem
+                                    if (selectedItem
                                         .contains(widget.pId)) {
                                       value.removeItem(widget.pId);
+                                      removeItemFromSelectedList(widget.pId);
                                     } else {
                                       value.addItem(widget.pId);
+                                      addItemToSelectedList(widget.pId);
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
