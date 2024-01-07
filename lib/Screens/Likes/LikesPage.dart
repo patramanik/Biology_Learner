@@ -87,6 +87,7 @@ class _LikesPageState extends State<LikesPage> {
                                     mataTitle: mataTitel,
                                     postImages: image,
                                     content: postContent,
+                                    pId: pId,
                                   ),
                                 ),
                               );

@@ -105,7 +105,7 @@ class _SearchPageState extends State<SearchPage> {
                               postName: post.postName,
                               postImages: post.image,
                               content: post.postContent,
-                              mataTitle: post.metaTitle),
+                              mataTitle: post.metaTitle, pId: post.id,),
                         ),
                       );
                     },

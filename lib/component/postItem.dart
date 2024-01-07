@@ -39,7 +39,7 @@ class PostItem extends StatelessWidget {
                     ),
                     child: Image.network(
                       image,
-                      width: 160,
+                      width: 130,
                       height: 155,
                       fit: BoxFit.fill,
                     ),
@@ -58,28 +58,28 @@ class PostItem extends StatelessWidget {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(
-                            top: 15.0,
+                            top: 16.0,
                             left: 3.0,
                             right: 5.0,
-                            bottom: 5.0,
+                            bottom: 3.0,
                           ),
                           child: SizedBox(
                             child: Text(
                               name,
                               textAlign: TextAlign.start,
                               style: const TextStyle(
-                                fontSize: 22.0,
+                                fontSize: 19.0,
                                 fontWeight: FontWeight.w500,
                                 color: Color.fromARGB(255, 23, 23, 23),
                               ),
-                              maxLines: 3,
+                              maxLines: 4,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 5.0,
-                        ),
+                        // const SizedBox(
+                        //   height: 3.0,
+                        // ),
                         // SizedBox(
                         //   child: Text(
                         //     matatitle,
@@ -112,7 +112,7 @@ class PostItem extends StatelessWidget {
               ),
             ),
             Positioned(
-              left: 130,
+              left: 98,
               top: 5.0,
               child: Padding(
                 padding: const EdgeInsets.all(0.0),
